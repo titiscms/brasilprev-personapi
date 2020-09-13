@@ -1,22 +1,33 @@
 package com.brasilprev.person.domain.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
 import lombok.Data;
 
 @Data
+@Embeddable
 public class Address {
 
+	@Column(name = "address_zip_code")
 	private String zipCode;
 	
-	private String address;
+	@Column(name = "address_address_line_1")
+	private String addressLine_1;
 	
+	@Column(name = "address_number")
 	private String number;
 	
-	private String additionalAddress;
+	@Column(name = "address_address_line_2")
+	private String addressLine_2;
 	
-	private String neighborhood;
+	@Column(name = "address_region")
+	private String region;
 	
+	@Column(name = "address_city")
 	private String city;
 	
-	private String state;
+	@Column(name = "address_province")
+	private String province;
 	
 }
