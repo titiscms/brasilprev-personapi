@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum ProblemType {
 
+	BUSINESS_ERROR("/business-error", "Business rule violation"),
 	SYSTEM_ERROR("/system-error", "The system has an error"),
 	INVALID_DATA("/invalid-data", "The request contains invalid data"),
 	RESOURCE_NOT_FOUND("/resource-not-found", "Resource not found");

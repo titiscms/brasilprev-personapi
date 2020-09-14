@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.brasilprev.person.domain.exception.BusinessException;
 import com.brasilprev.person.domain.exception.EntityNotFoundException;
 
 @ControllerAdvice
@@ -28,6 +29,17 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		ProblemType problemType = ProblemType.RESOURCE_NOT_FOUND;
 		String detail = ex.getMessage();
 		
+		Problem problem = createProblemBuilder(status, problemType, detail).build();
+		
+		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+	}
+	
+	@ExceptionHandler(BusinessException.class)
+	public ResponseEntity<?> handleBusinessException(BusinessException ex, WebRequest request) {
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		ProblemType problemType = ProblemType.BUSINESS_ERROR;
+		String detail = ex.getMessage();
+			
 		Problem problem = createProblemBuilder(status, problemType, detail).build();
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);

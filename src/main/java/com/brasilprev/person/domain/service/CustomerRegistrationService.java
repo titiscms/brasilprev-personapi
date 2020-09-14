@@ -1,26 +1,32 @@
 package com.brasilprev.person.domain.service;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.brasilprev.person.domain.exception.EntityNotFoundException;
+import com.brasilprev.person.domain.exception.CPFAlreadyRegisteredException;
+import com.brasilprev.person.domain.exception.CustomerNotFoundException;
 import com.brasilprev.person.domain.model.Customer;
 import com.brasilprev.person.domain.repository.CustomerRepository;
 
 @Service
 public class CustomerRegistrationService {
 	
-	private static final String MESSAGE_CUSTOMER_NOT_FOUND = 
-			"There is no code %d customer record.";
-	
 	@Autowired
 	private CustomerRepository customerRepository;
 	
 	@Transactional
 	public Customer save(Customer customer) {
+		Optional<Customer> customerSaved = customerRepository.findByCpf(customer.getCpf());
+		
+		if (customerSaved.isPresent() && customer.getId() == null) {
+			throw new CPFAlreadyRegisteredException();
+		}
+		
 		return customerRepository.save(customer);
 	}
 	
@@ -31,15 +37,13 @@ public class CustomerRegistrationService {
 			customerRepository.flush();
 			
 		} catch (EmptyResultDataAccessException e) {
-			throw new EntityNotFoundException(
-					String.format(MESSAGE_CUSTOMER_NOT_FOUND, customerId));
+			throw new CustomerNotFoundException(customerId);
 		}
 	}
 	
 	public Customer findOrFail(Long customerId) {
 		return customerRepository.findById(customerId)
-				.orElseThrow(() -> new EntityNotFoundException(
-						String.format(MESSAGE_CUSTOMER_NOT_FOUND, customerId)));
+				.orElseThrow(() -> new CustomerNotFoundException(customerId));
 	}
 	
 }

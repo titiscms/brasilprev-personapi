@@ -1,4 +1,4 @@
-package com.brasilprev.person.api.controller;
+package com.brasilprev.person.api.openapi.controller;
 
 import java.util.List;
 

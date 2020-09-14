@@ -1,4 +1,4 @@
-package com.brasilprev.person.api.openapi.controller;
+package com.brasilprev.person.api.controller;
 
 import java.util.List;
 
@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.brasilprev.person.api.assembler.CustomerModelAssembler;
 import com.brasilprev.person.api.assembler.CustomerModelDisassembler;
 import com.brasilprev.person.api.assembler.CustomerSummaryModelAssembler;
-import com.brasilprev.person.api.controller.CustomerControllerOpenApi;
 import com.brasilprev.person.api.model.CustomerModel;
 import com.brasilprev.person.api.model.CustomerSummaryModel;
 import com.brasilprev.person.api.model.input.CustomerInputModel;
+import com.brasilprev.person.api.openapi.controller.CustomerControllerOpenApi;
 import com.brasilprev.person.domain.model.Customer;
 import com.brasilprev.person.domain.repository.CustomerRepository;
 import com.brasilprev.person.domain.service.CustomerRegistrationService;
@@ -60,7 +60,7 @@ public class CustomerController implements CustomerControllerOpenApi {
 		
 		return customerModelAssembler.toModel(customer);
 	}
-	
+		
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public CustomerModel save(@RequestBody @Valid CustomerInputModel customerInputModel) {
