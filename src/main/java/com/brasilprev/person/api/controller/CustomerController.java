@@ -27,6 +27,9 @@ import com.brasilprev.person.domain.model.Customer;
 import com.brasilprev.person.domain.repository.CustomerRepository;
 import com.brasilprev.person.domain.service.CustomerRegistrationService;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = "Costumers")
 @RestController
 @RequestMapping(path = "/customers", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CustomerController {
