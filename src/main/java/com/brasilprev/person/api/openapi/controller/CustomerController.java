@@ -1,4 +1,4 @@
-package com.brasilprev.person.api.controller;
+package com.brasilprev.person.api.openapi.controller;
 
 import java.util.List;
 
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.brasilprev.person.api.assembler.CustomerModelAssembler;
 import com.brasilprev.person.api.assembler.CustomerModelDisassembler;
 import com.brasilprev.person.api.assembler.CustomerSummaryModelAssembler;
+import com.brasilprev.person.api.controller.CustomerControllerOpenApi;
 import com.brasilprev.person.api.model.CustomerModel;
 import com.brasilprev.person.api.model.CustomerSummaryModel;
 import com.brasilprev.person.api.model.input.CustomerInputModel;
@@ -27,12 +28,9 @@ import com.brasilprev.person.domain.model.Customer;
 import com.brasilprev.person.domain.repository.CustomerRepository;
 import com.brasilprev.person.domain.service.CustomerRegistrationService;
 
-import io.swagger.annotations.Api;
-
-@Api(tags = "Costumers")
 @RestController
 @RequestMapping(path = "/customers", produces = MediaType.APPLICATION_JSON_VALUE)
-public class CustomerController {
+public class CustomerController implements CustomerControllerOpenApi {
 
 	@Autowired
 	private CustomerRepository customerRepository;

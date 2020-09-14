@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,10 +15,12 @@ import lombok.Setter;
 public class CustomerInputModel {
 		
 	@NotBlank
+	@ApiModelProperty(example = "Thiago Costa", required = true)
 	private String name;
 	
 	@NotNull
 	@CPF
+	@ApiModelProperty(example = "80477649009", required = true)
 	private String cpf;
 	
 	@Valid
