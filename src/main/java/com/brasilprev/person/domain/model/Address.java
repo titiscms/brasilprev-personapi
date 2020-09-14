@@ -3,6 +3,7 @@ package com.brasilprev.person.domain.model;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -10,7 +11,7 @@ import lombok.Data;
 @Embeddable
 public class Address {
 
-	@NotBlank
+	@NotNull
 	@Column(name = "address_zip_code")
 	private String zipCode;
 	
@@ -18,7 +19,7 @@ public class Address {
 	@Column(name = "address_address_line_1")
 	private String addressLine_1;
 	
-	@NotBlank
+	@NotNull
 	@Column(name = "address_number")
 	private String number;
 	

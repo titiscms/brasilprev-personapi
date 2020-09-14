@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -25,7 +26,7 @@ public class Customer {
 	@NotBlank
 	private String name;
 	
-	@NotBlank
+	@NotNull
 	@CPF
 	private String cpf;
 	
