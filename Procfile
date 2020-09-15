@@ -1,1 +1,1 @@
-web: java -jar target/person-api-0.0.1-SNAPSHOT.jar
+web: java -Dserver.port=$PORT -Dspring.profiles.active=prod $JAVA_OPTS -jar target/person-api*.jar
